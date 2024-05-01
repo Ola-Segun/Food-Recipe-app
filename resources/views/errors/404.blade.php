@@ -3,34 +3,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"> --}}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.0/min/dropzone.min.css">
-    {{-- <link rel="stylesheet" href=""> --}}
-
-    {{-- @stack('styles')
-    @stack('scripts') --}}
 
     <link rel="stylesheet" href="{{ URL::asset('css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ URL::asset('dropzone-main/src/dropzone.scss') }}">
 
-    <title>{{ 'Recipies | ' . $title  }}</title>
+    <title>404</title>
 </head>
-<body>
+<body class="bg-dark d-flex align-items-center justify-content-center min-vh-100">
 
-    {{-- Components --}}
     <div class="container">
-
-        {{-- Nav bar --}}
-        <x-partials.navbar />
-        
-    
+        <div class="p-5 m-5 text-center">
+            <div class="card p-5 rounded-5">
+                <h1 class="display-1 fw-bold">404</h1>
+                <h4 class="display-6">Page Not Found</h4>
+                <hr>
+                <p class="lead fw-normal">Hey, the page you are trying to find is mot Available.</p>
+                <div class=""><a href="{{ url('recipes/') }}" class="btn btn-primary rounded-5 px-5">Go Back home</a></div>
+            </div>
+        </div>
     </div>
 
 
-    {{-- Content --}}
-    <div class="container">
-        {{ $slot }}
-    </div>
+
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -40,11 +35,5 @@
     <link rel="stylesheet" href="{{ URL::asset('js/bootstrap.bundle.min.js') }}">
     <link rel="stylesheet" href="{{ URL::asset('js/dropzone.js') }}">
     <link rel="stylesheet" href="{{ URL::asset('dropzone-main/src/dropzone.js') }}">
-
-    {{ $scripts ?? ''}}
-
-    <script>
-        
-    </script>
 </body>
 </html>

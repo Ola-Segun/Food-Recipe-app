@@ -2,7 +2,7 @@
 
 <nav class=" navbar navbar-expand-lg bg-body-tertiary shadow sticky-top rounded">
     <div class="container">
-      <a class="navbar-brand bold" href="#">Recipes</a>
+      <a class="navbar-brand bold" href="/recipes">Recipes</a>
 
       <div class=" collapse navbar-collapse" id="navbarSupportedContent">
 

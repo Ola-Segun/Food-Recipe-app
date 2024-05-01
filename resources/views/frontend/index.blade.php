@@ -90,11 +90,8 @@
         </div>
     </div>
 
-    <div class="mt6 p4" style="width: 200px; height: 50px;">
-
-        {{ $recipes->links() }}
-    
-    </div>
+    {{-- pagination --}}
+    {{ $recipes->links('pagination::bootstrap-5') }}
 
     </div>
 

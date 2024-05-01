@@ -4,7 +4,13 @@
         Gallery
     </x-slot>
 
-
+    {{-- @push('styles')
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    @endpush
+    
+    @push('script')
+        <link rel="stylesheet" href="{{ asset('css/dropzone.css') }}">
+    @endpush --}}
 
     <div class="container">
 
@@ -28,10 +34,12 @@
             </div>
 
             <div class="col-md-12 mt-3">
-                <div class="row">
-                    <div class="card shadow" style="height: 70vh;">
-
-                    </div>
+                <div class="card shadow" style="height: 70vh; display: flow; padding: 30px;">
+                    @foreach ($gallery as $gaImg)
+                    <a href="{{ url('recipes/gallery/'.$gaImg->id.'/delete') }}" onclick="return confirm('Do You want to delete?')">
+                        <img src="{{ asset($gaImg->image) }}" class="" alt="" style="width:150px;">
+                    </a>
+                    @endforeach
                 </div>
             </div>
 

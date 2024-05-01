@@ -8,9 +8,12 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RecipeImageContoller;
 
 Route::get('/recipes', [RecipeController::class, 'index']);
+
 // Galleries
 Route::get('/recipes/gallery', [GalleryController::class, 'index']);
 Route::get('recipes/gallery/upload', [GalleryController::class, 'create']);
+Route::post('recipes/gallery/upload', [GalleryController::class, 'store']);
+Route::get('recipes/gallery/{id}/delete', [GalleryController::class, 'destroy']);
 
 
 
