@@ -22,10 +22,10 @@
                     <label>Drag and Drop Multiple Images (JPG, JPEG, PNG, .webp)</label>
                     
                     <form 
-                        action="{{ url('recipes/gallery/upload') }}" 
+                        action="{{ url('posts/gallery/upload') }}" 
                         method="POST" 
                         enctype="multipart/form-data" 
-                        class="dropzone" 
+                        class="dropzone rounded-4 shadow-md" 
                         id="myDragAndDropUploader">
                         @csrf
                     </form>
@@ -43,6 +43,7 @@
     <x-slot:script>
     
     <script type="text/javascript">
+
 
         var maxFilesizeVal = 12; //MB
         var maxFilesVal = 10;

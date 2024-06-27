@@ -5,7 +5,7 @@ module.exports = function (config) {
     reporters: ["spec"],
     specReporter: {
       maxLogLines: 5, // limit number of lines logged per test
-      suppressErrorSummary: false, // do not print error summary
+      suppressErrorpost_summary: false, // do not print error post_summary
       suppressFailed: false, // do not print information about failed tests
       suppressPassed: false, // do not print information about passed tests
       suppressSkipped: true, // do not print information about skipped tests

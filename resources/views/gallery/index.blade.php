@@ -30,20 +30,21 @@
                     Gallery
                 </h3>
 
-                <a href="{{ url('recipes/gallery/upload') }}" class="btn btn-info float-end">Upload Image</a>
+                <a href="{{ url('posts/gallery/upload') }}" class="btn btn-info float-end">Upload Image</a>
             </div>
 
             <div class="col-md-12 mt-3">
-                <div class="card shadow" style="height: 70vh; display: flow; padding: 30px;">
+                <div class="card shadow" style="height: 70vh; display: ruby-text; padding: 30px; overflow-y: scroll;">
                     @foreach ($gallery as $gaImg)
-                    <a href="{{ url('recipes/gallery/'.$gaImg->id.'/delete') }}" onclick="return confirm('Do You want to delete?')">
-                        <img src="{{ asset($gaImg->image) }}" class="" alt="" style="width:150px;">
-                    </a>
+                        <a href="{{ url('posts/gallery/'.$gaImg->id.'/delete') }}" onclick="return confirm('Do You want to delete?')">
+                            <img src="{{ asset($gaImg->image) }}" class="" alt="" style="width:150px;">
+                        </a>
                     @endforeach
                 </div>
             </div>
 
         </div>
     </div>
+    
 
 </x-webapplayout>

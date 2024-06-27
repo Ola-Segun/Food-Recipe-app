@@ -58,9 +58,9 @@ class GalleryController extends Controller
 
         $gaImg->delete();
 
-        return redirect('recipes/gallery')->with('statuses', [
+        return redirect('posts/gallery')->with('statuses', [
             [
-                'message' => 'Recipe Deleted Successfully',
+                'message' => 'Post Deleted Successfully',
                 'type' => 'success'
             ],
         ]);

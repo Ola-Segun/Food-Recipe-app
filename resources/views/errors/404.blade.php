@@ -18,8 +18,8 @@
                 <h1 class="display-1 fw-bold">404</h1>
                 <h4 class="display-6">Page Not Found</h4>
                 <hr>
-                <p class="lead fw-normal">Hey, the page you are trying to find is mot Available.</p>
-                <div class=""><a href="{{ url('recipes/') }}" class="btn btn-primary rounded-5 px-5">Go Back home</a></div>
+                <p class="lead fw-normal">Hey, the page you are trying to find is not Available.</p>
+                <div class=""><a href="{{ url('/') }}" class="btn btn-primary rounded-5 px-5">Go Back home</a></div>
             </div>
         </div>
     </div>

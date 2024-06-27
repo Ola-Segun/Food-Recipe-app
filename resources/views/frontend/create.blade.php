@@ -19,15 +19,15 @@
 
 
 
-        <form action="{{ url('/recipes/create') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ url('/posts/create') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <div class="row justify-content-around">
                 <div class="col-md-5">
                     <div class="mb-3">
-                        <label for="recipe_name" class="form-label">Recipe Name</label>
-                        <input type="text" value="{{ old('recipe_name') }}" name="recipe_name" class="form-control">
-                        @error('recipe_name')  <span class="text-danger">{{$message}}</span>@enderror
+                        <label for="Post_name" class="form-label">Post Name</label>
+                        <input type="text" value="{{ old('Post_name') }}" name="Post_name" class="form-control">
+                        @error('Post_name')  <span class="text-danger">{{$message}}</span>@enderror
                     </div>
                     <div class="mb-3">
                         <label for="slug" class="form-label">Slug</label>
@@ -36,25 +36,29 @@
 
                     </div>
                     <div class="mb-3">
-                        <label for="small_details" class="form-label">Small Details</label>
-                        <input type="text" value="{{ old('small_details') }}" name="small_details" class="form-control">
-                        @error('small_details')  <span class="text-danger">{{$message}}</span>@enderror
+                        <label for="post_summary" class="form-label">Small Details</label>
+                        <input type="text" value="{{ old('post_summary') }}" name="post_summary" class="form-control">
+                        @error('post_summary')  <span class="text-danger">{{$message}}</span>@enderror
                     </div>
-                    <div class="mb-3">
-                        <label for="avg_cooking_time" class="form-label">Avg Cooking Time <small>in minutes</small></label>
-                        <input type="text" value="{{ old('avg_cooking_time') }}" name="avg_cooking_time" class="form-control">
-                        @error('avg_cooking_time')  <span class="text-danger">{{$message}}</span>@enderror
 
-                    </div>
-                    <div class="mb-3">
-                        <label for="tools_needed" class="form-label">Tools Needed</label>
-                        <input type="text" value="{{ old('tools_needed') }}" name="tools_needed" class="form-control">
-                        @error('tools_needed')  <span class="text-danger">{{$message}}</span>@enderror
+                    {{-- Tag Section --}}
+                    <section class="tags-cover p-2">
+                        <div class="multiple-tag flex flex-wrap h-fit w-fit p-3 rounded-md bg-slate-100" style="gap: 10px; font-weight: bold; font-size: 12px; overflow-y: scroll;">
+                            @foreach ($tags as $tag)
+                                <p class="myTag bg-green-200 hover:bg-green-300 p-1 rounded-md border-solid border border-green-400 hover:border-green-500 cursor-pointer">{{$tag->tag}}</p>
+                            @endforeach
+                        </div>
+                        <br>
+                        <div class="mb-3">
+                            <label for="tags" class="form-label">Tags</label>
+                            <input type="text" value="{{ old('tags') }}" name="tags" class="tagsForm form-control">
+                            @error('tags')  <span class="text-danger">{{$message}}</span>@enderror
+                        </div>
+                    </section>
 
-                    </div>
                     <div class="mb-3 form-check">
                         <label class="form-check-label" for="is_active">Is Active</label>
-                        <input type="checkbox" value="{{ old('is_active') }}" name="is_active" class="form-check-input">
+                        <input type="checkbox" checked value="{{ old('is_active') }}" name="is_active" class="form-check-input">
                         @error('is_active')  <span class="text-danger">{{$message}}</span>@enderror
                     </div>
                     
@@ -63,31 +67,25 @@
                 <div class="col-md-5">
                     <div class="mb-3">
                         <label for="description" class="form-label">Description</label>
-                        <textarea placeholder="Describe your Recipe" name="description" text="sdgsdgs" class="form-control" style="max-height: 200px;">{{ old('description') }}</textarea>
+                        <textarea placeholder="Describe your Post" name="description" text="sdgsdgs" class="form-control" style="max-height: 200px;">{{ old('description') }}</textarea>
                         @error('description')  <span class="text-danger">{{$message}}</span>@enderror
 
                     </div>
-                    <div class="mb-3">
-                        <label for="ingredients" class="form-label">Ingredients</label>
-                        <input type="text" value="{{ old('ingredients') }}" name="ingredients" class="form-control">
-                        @error('ingredients')  <span class="text-danger">{{$message}}</span>@enderror
-
-                    </div>
 
                     <div class="mb-3">
-                        <label for="procedures" class="form-label">Procedures/Steps</label>
-                        <textarea type="text" placeholder="step 1, step 2," name="procedures" class="form-control">{{ old('procedures') }}</textarea>
-                        @error('procedures')  <span class="text-danger">{{$message}}</span>@enderror
+                        <label for="post_body" class="form-label">post_body/Steps</label>
+                        <textarea type="text" placeholder="step 1, step 2," name="post_body" class="form-control">{{ old('post_body') }}</textarea>
+                        @error('post_body')  <span class="text-danger">{{$message}}</span>@enderror
 
                     </div>
 
                     <div class="md-3">
                         <label for="image">Upload Image</label>
-                        <input type="file" name="recipe_image" class="form-control">
+                        <input type="file" name="Post_image" class="form-control">
                     </div>
                     {{-- <div class="mb-3">
-                        <label for="procedures" class="form-label">procedures</label>
-                        <textarea type="text" value="" name="procedures" class="form-control" id="procedures">{{ old('procedure') }}</textarea>
+                        <label for="post_body" class="form-label">post_body</label>
+                        <textarea type="text" value="" name="post_body" class="form-control" id="post_body">{{ old('procedure') }}</textarea>
                     </div> --}}
                     
                     <div class="mb-3 py-2">
@@ -102,24 +100,58 @@
     </div>
 
     <x-slot:scripts>
-        <script type="text/javascript">
+        <script>
+            // Add Tags to form
+            function getTag(element) {
+                const content = $(element).text();
 
-            // Ingredients
-            $('#procedures').summernote({
-                placeholder: '1. Procedures / steps to cook,',
-                tabsize: 2,
-                height: 120,
-                toolbar: [
-                ['style', ['']],
-                ['font', ['bold', 'underline', 'clear']],
-                ['color', ['']],
-                ['para', ['ul', 'ol', '']],
-                ['table', ['']],
-                ['insert', ['', '', '']],
-                ['view', ['', '', '']]
-                ]
-            });
-          </script>
+                let currentValue = $('.tagsForm').val();
+
+                let wordsArray = currentValue ? currentValue.split(', ') : [];
+
+                if (!wordsArray.includes(content)) {
+                    if (currentValue) {
+                        currentValue += ', ';
+                    }
+                    currentValue += content;
+                    $('.tagsForm').val(currentValue);
+                }
+            }
+
+            const tagsForm = document.querySelector('.tagsForm');
+            const multipleTag = document.querySelector('.multiple-tag');
+
+            let value = ''
+            multipleTag.addEventListener('click', (e)=>{
+                value += `${e.target.textContent}, `;
+                tagsForm.value = value;
+            })
+
+            tagsForm.addEventListener('input', ()=>{
+                tagsForm.value = ''
+                console.log(tagsForm.value);
+            })
+
+            // $('#post_body').summernote({
+            //     placeholder: '1. post_body / steps to cook,',
+            //     tabsize: 2,
+            //     height: 120,
+            //     toolbar: [
+            //     ['style', ['']],
+            //     ['font', ['bold', 'underline', 'clear']],
+            //     ['color', ['']],
+            //     ['para', ['ul', 'ol', '']],
+            //     ['table', ['']],
+            //     ['insert', ['', '', '']],
+            //     ['view', ['', '', '']]
+            //     ]
+            // });
+
+
+
+            
+            </script>
     </x-slot:scripts>
+
 
 </x-webapplayout>

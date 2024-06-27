@@ -508,7 +508,7 @@ iframe {
     border: 0
 }
 
-summary {
+post_summary {
     display: list-item;
     cursor: pointer
 }
